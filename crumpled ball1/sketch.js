@@ -21,7 +21,7 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 
-	paperBody = Bodies.circle(200 , 375 , 10 , {restitution:2, isStatic:false,friction:0.5});
+	paperBody = Bodies.circle(200 , 375 , 10 , {restitution:0.3,friction:1,density:6});
 	World.add(world, paperBody);
 	
 
@@ -56,9 +56,9 @@ function draw() {
 }
 
 function keyPressed() {
- if (keyCode === DOWN_ARROW) {
+ if (keyCode === UP_ARROW) {
     // Look at the hints in the document and understand how to make the package body fall only on press of the Down arrow key.
- Matter.Body.setStatic(paperBody,false);
+ Matter.Body.applyForce(paperBody,paperBody.position,{x:85,y:-85});
     
   }
 }
